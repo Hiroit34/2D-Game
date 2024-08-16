@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.entity.Player;
 import org.example.object.Chest;
 import org.example.object.Door;
 import org.example.object.Key;
