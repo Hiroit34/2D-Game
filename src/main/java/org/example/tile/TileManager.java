@@ -14,7 +14,7 @@ public class TileManager {
 
     GamePanel gp;
     public Tile[] tile;
-    public int mapTileNumber[][];
+    public int[][] mapTileNumber;
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
@@ -67,7 +67,7 @@ public class TileManager {
                 String line = br.readLine();
 
                 while (col < gp.maxWorldCol) {
-                    String numbers[] = line.split(" ");
+                    String[] numbers = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
 
