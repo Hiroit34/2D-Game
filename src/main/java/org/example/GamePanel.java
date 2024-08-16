@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.entity.Player;
+import org.example.object.SuperObject;
 import org.example.tile.TileManager;
 
 import javax.swing.*;
@@ -18,8 +19,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
-    public final int WoldWidth = tileSize * maxWorldCol;
-    public final int WoldHeight = tileSize * maxWorldRow;
+//    public final int WoldWidth = tileSize * maxWorldCol;
+//    public final int WoldHeight = tileSize * maxWorldRow;
 
     int FPS = 60;
 
@@ -28,6 +29,8 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
     public Player player = new Player(this, this.keyH);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
+    public SuperObject[] obj = new SuperObject[10];
+    public AssetSetter assetSetter = new AssetSetter(this);
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -36,6 +39,10 @@ public class GamePanel extends JPanel implements Runnable{
         this.addKeyListener(keyH);
         this.setFocusable(true);
         this.requestFocusInWindow();
+    }
+
+    public void setupGame() {
+        assetSetter.setObject();
     }
 
     public void startGameThread() {
@@ -91,9 +98,17 @@ public class GamePanel extends JPanel implements Runnable{
 
         tileManager.draw(g2);
 
+        for (int i = 0; i < obj.length; i++) {
+            if(obj[i] != null) {
+                obj[i].draw(g2, this);
+            }
+        }
+
         player.draw(g2);
 
         g2.dispose();
+
+
 
     }
 }
