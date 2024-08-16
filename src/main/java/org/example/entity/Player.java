@@ -15,7 +15,7 @@ public class Player extends Entity{
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
-    int hasKey = 0;
+    public int hasKey = 0;
 
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -126,16 +126,26 @@ public class Player extends Entity{
 
             switch (objectName) {
                 case "Key":
+                    gp.playSoundEffect(1);
                     hasKey++;
                     gp.obj[i] = null;
-                    System.out.println("Key picked up. You have now " + hasKey + " keys.");
+                    gp.ui.showMessage("You got a KEY!");
                     break;
                 case "Door":
+                    gp.playSoundEffect(3);
                     if(hasKey > 0) {
                         gp.obj[i] = null;
                         hasKey--;
+                        gp.ui.showMessage("You OPENED a DOOR!");
+                    } else {
+                        gp.ui.showMessage("You NEED a KEY!");
                     }
-                    System.out.println("Door open. You have now " + hasKey + " keys.");
+                    break;
+                case "Boots":
+                    gp.playSoundEffect(2);
+                    speed += 2;
+                    gp.obj[i] = null;
+                    gp.ui.showMessage("You got a BOOTS! RUUUN!");
                     break;
             }
         }
