@@ -64,7 +64,7 @@ public class Player extends Entity{
             } else if(keyH.leftPressed) {
                 direction = "left";
             } else if(keyH.rightPressed) {
-                worldX += speed;
+                direction = "right";
             }
 
             collisionOn = false;
@@ -82,7 +82,7 @@ public class Player extends Entity{
                         worldX -= speed;
                         break;
                     case "right":
-                        direction = "right";
+                        worldX += speed;
                         break;
                 }
             }
